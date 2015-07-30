@@ -1,0 +1,107 @@
+
+\begin{tikzpicture}
+\small
+    \node[draw,circle,radius=1cm,color=mLightBrown!40,fill=mLightBrown!40] (c1) at (-2.7,0) {};
+    \node[draw,circle,radius=1cm,color=mLightBrown!40,fill=mLightBrown!40] (c2) at (-2.3,0) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c3) at (-1.5,0) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c4) at (-1.1,0) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c5) at (-0.8,0) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c6) at (-0.5,0) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c7) at (-0.2,0) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal!40,fill=mDarkTeal!40] (c8) at (1.6,0) {};
+    \node[draw,circle,radius=1cm,color=mLightBrown,fill=mLightBrown] (c9) at (2,0) {};
+    \node[draw,circle,radius=1cm,color=mLightBrown,fill=mLightBrown] (c10) at (2.5,0) {};
+
+    \node[draw,circle,radius=1cm,color=mLightBrown!40,fill=mLightBrown!40] (c11) at (-2.5,1) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c12) at (-2,1) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c13) at (-1.5,1) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c14) at (-0.8,1) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c15) at (0.8,1) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c16) at (1.2,1) {};
+    \node[draw,circle,radius=1cm,color=mLightBrown,fill=mLightBrown] (c17) at (1.8,1) {};
+    \node[draw,circle,radius=1cm,color=mLightBrown,fill=mLightBrown] (c18) at (2.1,1) {};
+    \node[draw,circle,radius=1cm,color=mLightBrown,fill=mLightBrown] (c19) at (2.4,1) {};
+    \node[draw,circle,radius=1cm,color=mLightBrown,fill=mLightBrown] (c20) at (2.7,1) {};
+
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c21) at (-2,2) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c22) at (-1,2) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c23) at (1,2) {};
+    \node[draw,circle,radius=1cm,color=mLightBrown,fill=mLightBrown] (c24) at (2,2) {};
+    \node[draw,circle,radius=1cm,color=mDarkTeal,fill=mDarkTeal] (c25) at (0,3) {};
+
+    \draw[thick,mLightBrown!40] (c1) -- (c11);
+    \draw[thick,mLightBrown!40] (c2) -- (c11);
+    \draw[thick,mDarkTeal] (c3) -- (c13);
+    \draw[thick,mDarkTeal] (c4) -- (c14);
+    \draw[thick,mDarkTeal] (c5) -- (c14);
+    \draw[thick,mDarkTeal] (c6) -- (c14);
+    \draw[thick,mDarkTeal] (c7) -- (c14);
+    \draw[thick,mDarkTeal!40] (c8) -- (c18);
+    \draw[thick,mLightBrown] (c9) -- (c18);
+    \draw[thick,mLightBrown] (c10) -- (c20);
+
+    \draw[thick,mDarkTeal] (c11) -- (c21);
+    \draw[thick,mDarkTeal] (c12) -- (c21);
+    \draw[thick,mDarkTeal] (c13) -- (c21);
+    \draw[thick,mDarkTeal] (c14) -- (c22);
+    \draw[thick,mDarkTeal] (c15) -- (c23);
+    \draw[thick,mDarkTeal] (c16) -- (c23);
+    \draw[thick,mLightBrown] (c17) -- (c24);
+    \draw[thick,mLightBrown] (c18) -- (c24);
+    \draw[thick,mLightBrown] (c19) -- (c24);
+    \draw[thick,mLightBrown] (c20) -- (c24);
+
+    \draw[thick,mDarkTeal] (c21) -- (c25);
+    \draw[thick,mDarkTeal] (c22) -- (c25);
+    \draw[thick,mDarkTeal] (c23) -- (c25);
+    \draw[thick,mDarkTeal] (c24) -- (c25);
+
+    \node[draw, drop shadow={opacity=.35}, minimum height=20, minimum width=20, %
+    inner color=mDarkTeal, outer color=mDarkTeal, color=black!2] (mds1) at (-2,-1.8) {}; %
+    \node[anchor=north,inner sep=2pt,color=black!2] at (mds1.north) {\tiny MDS}; %
+
+    \node[draw,circle,color=black!2,inner sep=0pt] (a1) at (-2,-2) {};
+    \node[draw,circle,color=black!2,inner sep=0pt] (a2) at (-1.8,-2) {};
+    \node[draw,circle,color=black!2,inner sep=0pt] (a3) at (-1.9,-1.9) {};
+    \node[draw,circle,color=black!2,inner sep=0pt] (a4) at (-2.1,-1.9) {};
+    \node[draw,circle,color=black!2,inner sep=0pt] (a5) at (-2,-1.8) {};
+    \draw[black!2] (a1) -- (a3) -- (a2);
+    \draw[black!2] (a4) -- (a5) -- (a3);
+
+    \node[draw, drop shadow={opacity=.35}, minimum height=20, minimum width=20, %
+    inner color=mLightBrown, outer color=mLightBrown, color=black!2] (mds1) at (-1,-1.8) {}; %
+    \node[anchor=north,inner sep=2pt,color=black!2] at (mds1.north) {\tiny MDS}; %
+
+    \node[draw,circle,color=black!2,inner sep=0pt] (a1) at (-1,-2) {};
+    \node[draw,circle,color=black!2,inner sep=0pt] (a2) at (-0.8,-2) {};
+    \node[draw,circle,color=black!2,inner sep=0pt] (a3) at (-0.9,-1.9) {};
+    \node[draw,circle,color=black!2,inner sep=0pt] (a4) at (-1.1,-1.9) {};
+    \node[draw,circle,color=black!2,inner sep=0pt] (a5) at (-1,-1.8) {};
+    \draw[black!2] (a1) -- (a3) -- (a2);
+    \draw[black!2] (a4) -- (a5) -- (a3);
+
+    \node[draw, drop shadow={opacity=.35}, minimum height=20, minimum width=20, %
+    inner color=mDarkTeal!40, outer color=mDarkTeal!40, color=mDarkTeal] (mds1) at (0,-1.8) {}; %
+    \node[anchor=north,inner sep=2pt,color=mDarkTeal] at (mds1.north) {\tiny MDS}; %
+
+    \node[draw,circle,color=mDarkTeal,inner sep=0pt] (a1) at (0,-2) {};
+    \node[draw,circle,color=mDarkTeal,inner sep=0pt] (a2) at (0.2,-2) {};
+    \node[draw,circle,color=mDarkTeal,inner sep=0pt] (a3) at (0.1,-1.9) {};
+    \node[draw,circle,color=mDarkTeal,inner sep=0pt] (a4) at (-0.1,-1.9) {};
+    \node[draw,circle,color=mDarkTeal,inner sep=0pt] (a5) at (0,-1.8) {};
+    \draw[mDarkTeal] (a1) -- (a3) -- (a2);
+    \draw[mDarkTeal] (a4) -- (a5) -- (a3);
+
+    \node[draw, drop shadow={opacity=.35}, minimum height=20, minimum width=20, %
+    inner color=mLightBrown!40, outer color=mLightBrown!40, color=mDarkTeal] (mds1) at (1,-1.8) {}; %
+    \node[anchor=north,inner sep=2pt,color=mDarkTeal] at (mds1.north) {\tiny MDS}; %
+
+    \node[draw,circle,color=mDarkTeal,inner sep=0pt] (a1) at (1,-2) {};
+    \node[draw,circle,color=mDarkTeal,inner sep=0pt] (a2) at (1.2,-2) {};
+    \node[draw,circle,color=mDarkTeal,inner sep=0pt] (a3) at (1.1,-1.9) {};
+    \node[draw,circle,color=mDarkTeal,inner sep=0pt] (a4) at (0.9,-1.9) {};
+    \node[draw,circle,color=mDarkTeal,inner sep=0pt] (a5) at (1,-1.8) {};
+    \draw[mDarkTeal] (a1) -- (a3) -- (a2);
+    \draw[mDarkTeal] (a4) -- (a5) -- (a3);
+
+\end{tikzpicture}

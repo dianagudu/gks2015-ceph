@@ -1,0 +1,51 @@
+\tikzset{
+  sshadow/.style={opacity=.25, shadow xshift=0.05, shadow yshift=-0.06},
+}
+
+%-----TBoxes
+%-----#1 height, #2 width, #3 anchor for the label, #4 name of the node, #5
+%-----coordinate, #6 label
+\def\tboxr[#1,#2,#3,#4,#5]#6{%
+  \node[draw, drop shadow={opacity=.35}, minimum height=#1, minimum width=#2, %
+  inner color=black!2, outer color=black!2, color=mDarkTeal] (#4) at #5 {}; %
+  \node[anchor=#3,inner sep=2pt, align=center] at (#4.#3) {#6}; %
+}
+
+%-----#1 name of the node, #2 coordinate, #3 label
+\def\entity[#1,#2]#3;{
+  \node[draw,drop shadow={opacity=.4,shadow xshift=0.04, shadow
+    yshift=-0.04},color=mDarkTeal,fill=black!2,rounded corners=3] (#1) at #2 {#3};
+}
+
+\begin{tikzpicture}
+\small
+    \draw[dashed,to-to,color=mDarkTeal,fill=mDarkTeal] (0,1.5) -- (0,4);
+    \draw[dashed,to-to,color=mDarkTeal,fill=mDarkTeal] (2.5,1.5) -- (2.5,4);
+    \draw[dashed,to-to,color=mDarkTeal,fill=mDarkTeal] (5,1.5) -- (5,4);
+    
+    \tboxr[40,60,north,gw,(0,1)]{
+        \tiny \textbf{Ceph Object Gateway}\\
+        \tiny S3- and Swift-compatible
+    };
+    \tboxr[40,60,north,rbd,(2.5,1)]{
+        \tiny \textbf{Ceph Block Device}\\
+        \tiny virtual block device
+    };
+    \tboxr[40,60,north,fs,(5,1)]{
+        \tiny \textbf{Ceph Filesystem}\\
+        \tiny POSIX-compliant\\
+    };
+
+    \node[draw,drop shadow={opacity=.4,shadow xshift=0.04, shadow
+        yshift=-0.04},color=mLightBrown!20,fill=mLightBrown,rounded corners=3,
+        minimum height=20, minimum width=240, align=center] 
+        (rados) at (2.5,0) {
+            \tiny \textbf{Ceph storage cluster}\\
+            \tiny A reliable, easy to manage, distributed object store
+        };
+
+    \entity[cl1,(0,3)]{\tiny Objects};
+    \entity[cl2,(2.5,3)]{\tiny Virtual disks};
+    \entity[cl3,(5,3)]{\tiny Files and directories};
+
+\end{tikzpicture}

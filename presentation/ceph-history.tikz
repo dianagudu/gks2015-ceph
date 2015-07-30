@@ -1,0 +1,28 @@
+\tikzset{
+  sshadow/.style={opacity=.25, shadow xshift=0.05, shadow yshift=-0.06},
+}
+%-----#1 name of the node, #2 coordinate, #3 label
+\def\entity[#1,#2]#3;{
+  \node[draw,drop shadow={opacity=.4,shadow xshift=0.04, shadow
+    yshift=-0.04},color=mDarkTeal,fill=black!2,rounded corners=3] (#1) at #2 {#3};
+}
+
+\begin{tikzpicture}[
+    mnode/.style={circle,draw=black,fill=black,inner sep=0pt,minimum size=0.5pt},
+    %scale=0.7
+    ]
+\small
+    \draw[color=mLightBrown, fill=mLightBrown] (-1,-0.3) -- (3.8,2.3) -- (4.5,2.3) -- (2.3,-0.3) -- (-1,-0.3);
+    \node[color=orange!20] at (1.2,0) {\tiny 2004};
+    \node[color=orange!20] at (2.1,0.5) {\tiny 2006};
+    \node[color=orange!20] at (2.75,1) {\tiny 2010};
+    \node[color=orange!20] at (3.5,1.5) {\tiny 2012};
+    \node[color=orange!20] at (3.9,2) {\tiny 2014};
+
+    \only<8->{\entity[h1,(0,0)] {\tiny PhD thesis at UCSC};}
+    \only<9->{\entity[h2,(0.7,0.5)] {\tiny Project is open-sourced};}
+    \only<10->{\entity[h3,(1.4,1)] {\tiny Included in Linux kernel};}
+    \only<11->{\entity[h4,(2.1,1.5)] {\tiny Integrated into CloudStack};}
+    \only<12->{\entity[h5,(2.8,2)] {\tiny RedHat acquisition};}
+    
+\end{tikzpicture}

@@ -1,0 +1,19 @@
+\begin{tikzpicture}
+    \node[draw,color=mDarkTeal] (rack) at (3,2) {\tiny rack bucket};
+
+    \node[draw,color=mDarkTeal] (host1) at (1,1) {\tiny host bucket};
+    \node[draw,color=mDarkTeal] (host2) at (5,1) {\tiny host bucket};
+
+    \node[draw,color=mDarkTeal] (osd1) at (0,0) {\tiny osd bucket};
+    \node[draw,color=mDarkTeal] (osd2) at (2,0) {\tiny osd bucket};
+    \node[draw,color=mDarkTeal] (osd3) at (4,0) {\tiny osd bucket};
+    \node[draw,color=mDarkTeal] (osd4) at (6,0) {\tiny osd bucket};
+
+    \draw[color=mDarkTeal] (rack) -- (3,1.5) -- (1,1.5) -- (host1);
+    \draw[color=mDarkTeal] (rack) -- (3,1.5) -- (5,1.5) -- (host2);
+
+    \draw[color=mDarkTeal] (host1) -- (1,0.5) -- (0,0.5) -- (osd1);
+    \draw[color=mDarkTeal] (host1) -- (1,0.5) -- (2,0.5) -- (osd2);
+    \draw[color=mDarkTeal] (host2) -- (5,0.5) -- (4,0.5) -- (osd3);
+    \draw[color=mDarkTeal] (host2) -- (5,0.5) -- (6,0.5) -- (osd4);
+\end{tikzpicture}

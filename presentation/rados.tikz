@@ -1,0 +1,81 @@
+\tikzset{
+  sshadow/.style={opacity=.25, shadow xshift=0.05, shadow yshift=-0.06},
+}
+
+%-----TBoxes
+%-----#1 height, #2 width, #3 anchor for the label, #4 name of the node, #5
+%-----coordinate, #6 label
+\def\osd[#1,#2,#3,#4,#5]{%
+  \node[draw, drop shadow={opacity=.35}, minimum height=#1, minimum width=#2, %
+  inner color=black!2, outer color=black!2, color=mDarkTeal] (#4) at #5 {}; %
+  \node[anchor=#3,inner sep=2pt,color=mDarkTeal] at (#4.#3) {\tiny OSD}; %
+}
+%-----#1 height, #2 width, #3 anchor for the label, #4 name of the node, #5
+%-----coordinate, #6 label
+\def\mon[#1,#2,#3,#4,#5]{%
+  \node[draw, drop shadow={opacity=.35}, minimum height=#1, minimum width=#2, %
+  inner color=mLightBrown!20, outer color=mLightBrown!20, color=mDarkTeal] (#4) at #5 {}; %
+  \node[anchor=#3,inner sep=2pt,color=mDarkTeal] at (#4.#3) {\tiny MON}; %
+}
+%-----ABoxes
+%-----#1 height, #2 width, #3 aspect, #4 name of the node, #5
+%-----coordinate, #6 label
+\def\disk[#1,#2,#3,#4,#5]#6{%
+  \node[draw, cylinder, alias=cyl, shape border rotate=90, aspect=#3, %
+  minimum height=#1, minimum width=#2, outer sep=-0.5\pgflinewidth, %
+  color=orange!20, left color=mLightBrown, right color=mLightBrown
+  ] (#4) at #5 {};%
+  \node at #5 {#6};%
+  \fill [mLightBrown] let \p1 = ($(cyl.before top)!0.5!(cyl.after top)$), \p2 =
+  (cyl.top), \p3 = (cyl.before top), \n1={veclen(\x3-\x1,\y3-\y1)},
+  \n2={veclen(\x2-\x1,\y2-\y1)} in (\p1) ellipse (\n1 and \n2); }
+
+%-----#1 height, #2 width, #3 name of the node, #4
+%-----coordinate, #5 label
+\def\kbbox[#1,#2,#3,#4,#5]#6{
+        \draw[dashed] node[draw,color=gray!50,minimum
+        height=#1,minimum width=#2] (#4) at #5 {}; 
+        \node[anchor=#3,inner sep=2pt] at (#4.#3)  {#6};
+}
+
+\begin{tikzpicture}
+\small
+
+    \osd[20,20,north,osd6,(-4,0.2)];
+    \osd[20,20,north,osd6,(-4,1.2)];
+    \osd[20,20,north,osd6,(-3,0.2)];
+    \mon[20,20,center,mon2,(-3,1.2)];
+    \osd[20,20,north,osd4,(-2,0.2)];
+    \osd[20,20,north,osd6,(-2,1.2)];
+    \osd[20,20,north,osd3,(-1,0.2)];
+    \osd[20,20,north,osd6,(-1,1.2)];
+    \osd[20,20,north,osd1,(0,0.2)];
+    \osd[20,20,north,osd6,(0,1.2)];
+    \mon[20,20,center,mon1,(1,0.2)];
+    \osd[20,20,north,osd6,(1,1.2)];
+    \osd[20,20,north,osd2,(2,0.2)];
+    \osd[20,20,north,osd6,(2,1.2)];
+    \osd[20,20,north,osd5,(3,0.2)];
+    \osd[20,20,north,osd6,(3,1.2)];
+    \osd[20,20,north,osd6,(4,0.2)];
+    \mon[20,20,center,mon3,(4,1.2)];
+
+    \disk[10,15,1,d6,(-4,0)]{};
+    \disk[10,15,1,d6,(-4,1)]{};
+    \disk[10,15,1,d6,(-3,0)]{};
+    \disk[10,15,1,d4,(-2,0)]{};
+    \disk[10,15,1,d4,(-2,1)]{};
+    \disk[10,15,1,d3,(-1,0)]{};
+    \disk[10,15,1,d3,(-1,1)]{};
+    \disk[10,15,1,d1,(0,0)]{};
+    \disk[10,15,1,d1,(0,1)]{};
+    \disk[10,15,1,d6,(1,1)]{};
+    \disk[10,15,1,d2,(2,0)]{};
+    \disk[10,15,1,d2,(2,1)]{};
+    \disk[10,15,1,d5,(3,0)]{};
+    \disk[10,15,1,d5,(3,1)]{};
+    \disk[10,15,1,d6,(4,0)]{};
+
+    \kbbox[60,260,1,rados,(0,0.7)]{};
+    
+\end{tikzpicture}

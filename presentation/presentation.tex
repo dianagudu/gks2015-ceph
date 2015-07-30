@@ -1,0 +1,288 @@
+\documentclass[10pt, compress]{beamer}
+
+\usetheme{m}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepgfplotslibrary{dateplot}
+\usepackage{tikz}
+\usetikzlibrary{shapes,shadows,calc}
+\usepgflibrary{arrows}
+\usetikzlibrary{fit}
+
+\title{ceph workshop}
+\subtitle{GridKA School 2015}
+\date{\today}
+\author{Diana Gudu}
+\institute[KIT]{Karlsruhe Institute of Technology}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}[fragile]
+  \frametitle{evolution of storage}
+    \begin{center}
+        \input{history-storage-1.tikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{storage appliance}
+    \begin{center}
+    \includegraphics[width=0.7\textwidth]{7420_front_zoom}\\
+    \fontsize{3}{3}\selectfont Oracle 
+    http://www.e-business.com/zfs-7420-storage-appliance
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{future of storage}
+    % \begin{itemize}
+    %     \item
+    % \end{itemize}
+    \begin{columns}
+        \column{.5\textwidth}
+        \input{storage-appliance.tikz}
+        \column{.5\textwidth}
+        \only<2>{\input{ceph-model.tikz}}
+    \end{columns}
+\end{frame}
+
+
+\section{ceph}
+\begin{frame}[fragile]
+  \frametitle{ceph}
+    \begin{columns}
+        \column{.5\textwidth}
+            \begin{block}{Philosophy}
+                \begin{itemize}[<+->]
+                \item open-source
+                \item community focused
+                \item software-defined
+                \item scale-out hardware
+                \item self-managing
+                \item failure is normal
+                \end{itemize}
+            \end{block}
+        \column{.5\textwidth}
+            \only<7->{
+            \begin{block}{History}
+                \begin{center}
+                \input{ceph-history.tikz}
+            \end{center}
+            \end{block}
+            }
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{ceph architecture}
+    \begin{center}
+        \alt<2>{
+        \input{ceph-arch-detail.tikz}
+        }{
+        \input{ceph-arch.tikz}
+        }
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{rados}
+    \begin{center}
+        \input{rados.tikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{ceph daemons}
+    \begin{columns}
+        \column{.5\textwidth}
+            \begin{block}{OSD}
+                \begin{itemize}
+                \item serve objects to clients
+                \item one per disk
+                \item backend: btrfs, xfs, ext4
+                \item peer-to-peer replication and recovery
+                \item write-ahead journal
+            \end{itemize}
+            \end{block}
+        \column{.5\textwidth}
+            \begin{block}{MON}
+                \begin{itemize}
+                \item maintain cluster state and membership
+                \item vote for distributed decision-making
+                \item small, odd number
+                \end{itemize}
+                \vspace*{8mm}
+            \end{block}
+    \end{columns}
+\end{frame}
+
+\section{data placement}
+\begin{frame}[fragile]
+    \frametitle{hotels}
+    \begin{center}
+        \only<1>{
+        \includegraphics[width=.6\textwidth]{Generic-Key-Card}\\
+        \fontsize{3}{3}\selectfont 
+    http://free-stock-illustration.com/hotel+key+card
+        }
+        \only<2>{
+        \includegraphics[width=.5\textwidth]{hotel-room-2}\\
+        \fontsize{3}{3}\selectfont 
+    % http://www.letterlux.com/wp-content/uploads/2014/09/illuminated-hotel-room-numbers.jpg
+    http://2.bp.blogspot.com/-o-rlIrv094E/TXxj8D-B2LI/AAAAAAAAGh8/VEbrbHpxVxo/s1600/DSC02213.JPG
+        }
+        \only<3>{
+            \begin{itemize}
+                \item What if the hotel had 1 billion rooms? Or $\infty$?
+            \end{itemize}
+            \alert{\#13,565,983}
+        }
+        \only<4>{
+            %\begin{itemize}
+            %    \item
+            What if the hotel changed constantly?
+            %\end{itemize}
+        \includegraphics[width=.75\textwidth]{renovation-1}\\
+        \fontsize{3}{3}\selectfont 
+            http://waltonian.com/news/eastern-library-renovations-continue/
+        }
+        \only<5>{
+            %\begin{itemize}
+                %\item
+            Scale-up everything?
+            %\end{itemize}
+        \includegraphics[width=.75\textwidth]{hotel-reception}\\
+        \fontsize{3}{3}\selectfont 
+    http://www.millenniumhotels.com/content/dam/global/en/the-heritage-hotel-manila/images/cons-photographics-lobby-reception-desk\%2003062011\_34-basicB-preview-2048.jpg
+        }
+    \end{center}
+    \only<6->{
+        \begin{itemize}
+            \item<6-> The hotel itself must assign people to rooms instead of a
+                centralized place
+            \item<6-> The hotel should grow itself organically
+            \item<7-> \alert{Deterministic placement algorithm}
+            \item<7-> \alert{Intelligent nodes}
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{crush}
+    \begin{center}
+        \input{crush.tikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{crush}
+    \begin{block}{\alert{C}ontrolled \alert{R}eplication \alert{U}nder 
+        \alert{S}calable \alert{H}ashing}
+    \begin{itemize}
+        \item Pseudo-random placement algorithm
+        \item Repeatable, deterministic
+        \item Statistically uniform distribution
+        \item Stable mapping: minimal data migration
+        \item Rule-based configuration, topology aware
+    \end{itemize}
+    \only<1>{\vspace*{35mm}}
+    \only<2>{
+    \begin{center}
+        \input{topology.tikz}
+    \end{center}
+    }
+\end{block}
+\end{frame}
+
+\section{ceph clients}
+\begin{frame}[fragile]
+    \frametitle{librados}
+    \begin{itemize}
+        \item direct access to RADOS for applications
+        \item C, C++, Python, Java, Erlang, PHP
+        \item native socket access, no HTTP overhead
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{radosgw}
+    \begin{itemize}
+        \item RESTful API
+        \item unified object namespace
+        \item S3 and Swift compatible
+        \item user database and access control
+        \item usage accounting, billing
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{rbd}
+    \begin{itemize}
+        \item Storage of disk images in RADOS
+        \item Images are striped across the cluster
+        \item Decoupling of VMs from host
+        \item Thin provisioning
+            \begin{itemize}
+                \item physical storage only used once you begin writing
+            \end{itemize}
+        \item Snaphots, copy-on-write clones
+        \item Support in Qemu, KVM
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{CephFS}
+    \begin{center}
+        \input{cephfs.tikz}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{CephFS}
+    \begin{block}{Metadata Server}
+        \begin{itemize}
+            \item Manages metadata for POSIX-compliant filesystem
+                \begin{itemize}
+                    \item directory hierarchy
+                    \item file metadata: owner, timestamps, mode etc
+                \end{itemize}
+            \item Stores metadata in RADOS
+            \item Multiple MDS for HA and load balancing
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{dynamic subtree partitioning}
+    \begin{center}
+        \input{dynsp.tikz}
+    \end{center}
+\end{frame}
+
+\section{tutorial}
+\begin{frame}[fragile]
+    \frametitle{overview}
+    \begin{itemize}
+        \item Deploy a Ceph cluster
+        \item Simple operations with the storage cluster
+        \item CRUSH
+        \item RBD
+        \item CephFS
+        \item Advanced topics: erasure coding, cache tiering
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{cluster set-up}
+    \begin{center}
+        \input{setup.tikz}
+    \end{center}
+\end{frame}
+
+\plain{Questions?}
+
+\end{document}

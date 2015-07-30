@@ -1,0 +1,113 @@
+\tikzset{
+  sshadow/.style={opacity=.25, shadow xshift=0.05, shadow yshift=-0.06},
+}
+
+%-----TBoxes
+%-----#1 height, #2 width, #3 anchor for the label, #4 name of the node, #5
+%-----coordinate, #6 label
+\def\osd[#1,#2,#3,#4,#5]{%
+  \node[draw, drop shadow={opacity=.35}, minimum height=#1, minimum width=#2, %
+  inner color=black!2, outer color=black!2, color=mDarkTeal] (#4) at #5 {}; %
+  \node[anchor=#3,inner sep=2pt,color=mDarkTeal] at (#4.#3) {\tiny OSD}; %
+}
+%-----#1 height, #2 width, #3 anchor for the label, #4 name of the node, #5
+%-----coordinate, #6 label
+\def\mon[#1,#2,#3,#4,#5]{%
+  \node[draw, drop shadow={opacity=.35}, minimum height=#1, minimum width=#2, %
+  inner color=mLightBrown!20, outer color=mLightBrown!20, color=mDarkTeal] (#4) at #5 {}; %
+  \node[anchor=#3,inner sep=2pt,color=mDarkTeal] at (#4.#3) {\tiny MON}; %
+}
+\def\mds[#1,#2,#3,#4,#5]{%
+  \node[draw, drop shadow={opacity=.35}, minimum height=#1, minimum width=#2, %
+  inner color=mDarkTeal, outer color=mDarkTeal, color=black!2] (#4) at #5 {}; %
+  \node[anchor=#3,inner sep=2pt,color=black!2] at (#4.#3) {\tiny MDS}; %
+}
+%-----ABoxes
+%-----#1 height, #2 width, #3 aspect, #4 name of the node, #5
+%-----coordinate, #6 label
+\def\disk[#1,#2,#3,#4,#5]#6{%
+  \node[draw, cylinder, alias=cyl, shape border rotate=90, aspect=#3, %
+  minimum height=#1, minimum width=#2, outer sep=-0.5\pgflinewidth, %
+  color=orange!20, left color=mLightBrown, right color=mLightBrown
+  ] (#4) at #5 {};%
+  \node at #5 {#6};%
+  \fill [mLightBrown] let \p1 = ($(cyl.before top)!0.5!(cyl.after top)$), \p2 =
+  (cyl.top), \p3 = (cyl.before top), \n1={veclen(\x3-\x1,\y3-\y1)},
+  \n2={veclen(\x2-\x1,\y2-\y1)} in (\p1) ellipse (\n1 and \n2); }
+
+%------tree
+%------#1 radius, #2 name of the node, #3, #4 coordinates
+\def\tree[#1,#2,#3,#4]{%
+    \node[draw,circle,radius=#1cm,color=black!2,inner sep=0pt] (c1) at (#3,#4) {};
+    \node[draw,circle,radius=#1cm,color=black!2,inner sep=0pt] (c2) at (#3+0.2,#4) {};
+    \node[draw,circle,radius=#1cm,color=black!2,inner sep=0pt] (c3) at (#3+0.1,#4+0.1) {};
+    \node[draw,circle,radius=#1cm,color=black!2,inner sep=0pt] (c4) at (#3-0.1,#4+0.1) {};
+    \node[draw,circle,radius=#1cm,color=black!2,inner sep=0pt] (c5) at (#3,#4+0.2) {};
+    \draw[black!2] (c1) -- (c3) -- (c2);
+    \draw[black!2] (c4) -- (c5) -- (c3);
+}
+
+%-----#1 height, #2 width, #3 name of the node, #4
+%-----coordinate, #5 label
+\def\kbbox[#1,#2,#3,#4,#5]#6{
+        \draw[dashed] node[draw,color=gray!50,minimum
+        height=#1,minimum width=#2] (#4) at #5 {}; 
+        \node[anchor=#3,inner sep=2pt] at (#4.#3)  {#6};
+}
+%-----#1 name of the node, #2 coordinate, #3 label
+\def\entity[#1,#2]#3;{
+  \node[draw,align=center,drop shadow={opacity=.4,shadow xshift=0.04, shadow
+    yshift=-0.04},color=mDarkTeal,fill=black!2,rounded corners=3] (#1) at #2 {#3};
+}
+%-----#1 from node, #2 to node, #3 specification of a node (label), #4
+%-----dashed, or other parameters for draw
+\def\isaedge[#1,#2,#3,#4];{ 
+  \draw[to-to,color=mDarkTeal,#4,fill=mDarkTeal] (#1) -- #3
+  (#2);  
+}
+
+\begin{tikzpicture}
+\small
+
+    \mds[20,20,north,mds1,(-4,0.2)];
+    \osd[20,20,north,osd1,(-4,1.2)];
+    \osd[20,20,north,osd2,(-3,0.2)];
+    \mon[20,20,center,mon1,(-3,1.2)];
+    \osd[20,20,north,osd3,(-2,0.2)];
+    \osd[20,20,north,osd4,(-2,1.2)];
+    \osd[20,20,north,osd5,(-1,0.2)];
+    \mds[20,20,north,mds2,(-1,1.2)];
+    \osd[20,20,north,osd6,(0,0.2)];
+    \osd[20,20,north,osd7,(0,1.2)];
+    \mon[20,20,center,mon2,(1,0.2)];
+    \osd[20,20,north,osd8,(1,1.2)];
+    \osd[20,20,north,osd8,(2,0.2)];
+    \osd[20,20,north,osd10,(2,1.2)];
+    \mds[20,20,north,mds3,(3,0.2)];
+    \osd[20,20,north,osd11,(3,1.2)];
+    \osd[20,20,north,osd12,(4,0.2)];
+    \mon[20,20,center,mon3,(4,1.2)];
+
+    \tree[0.01,t1,-4,0];
+    \disk[10,15,1,d6,(-4,1)]{};
+    \disk[10,15,1,d6,(-3,0)]{};
+    \disk[10,15,1,d4,(-2,0)]{};
+    \disk[10,15,1,d4,(-2,1)]{};
+    \disk[10,15,1,d3,(-1,0)]{};
+    \tree[0.01,t3,-1,1];
+    \disk[10,15,1,d1,(0,0)]{};
+    \disk[10,15,1,d1,(0,1)]{};
+    \disk[10,15,1,d6,(1,1)]{};
+    \disk[10,15,1,d2,(2,0)]{};
+    \disk[10,15,1,d2,(2,1)]{};
+    \tree[0.01,t5,3,0];
+    \disk[10,15,1,d5,(3,1)]{};
+    \disk[10,15,1,d6,(4,0)]{};
+
+    \kbbox[60,260,1,rados,(0,0.7)]{};
+
+    \entity[cl,(0,3)]{\tiny FS client};
+    \isaedge[cl,osd7,node[right]{\tiny data},];
+    \isaedge[cl,mds2,node[left]{\tiny metadata},];
+    
+\end{tikzpicture}
