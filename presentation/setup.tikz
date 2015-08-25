@@ -78,21 +78,21 @@
     \mds[20,20,north,mds1,(0,0.2)];
     \osd[20,20,north,osd4,(1,0.2)];
 
-    \disk[10,15,1,d6,(1,4.5)]{};
-    \disk[10,15,1,d4,(1,3)]{};
-    \disk[10,15,1,d4,(1,1.5)]{};
-    \disk[10,15,1,d4,(1,0)]{};
+    \disk[10,15,1,d6,(1,4.5)]{\fontsize{3}{3}\selectfont /dev/vdb};
+    \disk[10,15,1,d4,(1,3)]{\fontsize{3}{3}\selectfont /dev/vdb};
+    \disk[10,15,1,d4,(1,1.5)]{\fontsize{3}{3}\selectfont /dev/vdb};
+    \disk[10,15,1,d4,(1,0)]{\fontsize{3}{3}\selectfont /dev/vdb};
     \tree[0.01,t1,0,0];
 
-    \kbbox[20,50,west,ceph-1,(-3.8,4.7)]{\tiny ceph-1};
-    \kbbox[30,75,west,ceph-2,(0.25,4.7)]{\tiny ceph-2};
-    \kbbox[30,75,west,ceph-3,(0.25,3.2)]{\tiny ceph-3};
-    \kbbox[30,75,west,ceph-4,(0.25,1.7)]{\tiny ceph-4};
-    \kbbox[30,75,west,ceph-5,(0.25,0.2)]{\tiny ceph-5};
+    \kbbox[20,50,west,ceph-5,(-3.8,4.7)]{\tiny ceph-5};
+    \kbbox[30,75,west,ceph-1,(0.25,4.7)]{\tiny ceph-1};
+    \kbbox[30,75,west,ceph-2,(0.25,3.2)]{\tiny ceph-2};
+    \kbbox[30,75,west,ceph-3,(0.25,1.7)]{\tiny ceph-3};
+    \kbbox[30,75,west,ceph-4,(0.25,0.2)]{\tiny ceph-4};
 
-    \draw[->,thick,color=gray!50] (ceph-1) -- (ceph-2);
-    \draw[->,thick,color=gray!50] (-2,4.7) -- (-2,3.2) -- (ceph-3);
-    \draw[->,thick,color=gray!50] (-2,4.7) -- (-2,1.7) -- (ceph-4);
-    \draw[->,thick,color=gray!50] (-2,4.7) -- (-2,0.2) -- (ceph-5);
+    \draw[->,thick,color=gray!50] (ceph-5) -- (ceph-1);
+    \draw[->,thick,color=gray!50] (-2,4.7) -- (-2,3.2) -- (ceph-2);
+    \draw[->,thick,color=gray!50] (-2,4.7) -- (-2,1.7) -- (ceph-3);
+    \draw[->,thick,color=gray!50] (-2,4.7) -- (-2,0.2) -- (ceph-4);
 
 \end{tikzpicture}
