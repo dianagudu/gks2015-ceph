@@ -44,7 +44,7 @@ List all the existing pools in the Ceph cluster:
 Now let's create a new pool and set the replication level to 3:
 
     ceph osd pool create data 128
-    ceph osd pool set data size 2
+    ceph osd pool set data size 3
 
 When creating a pool, the recommended number of PGs is given by the formula:
 
@@ -112,6 +112,52 @@ The *rados* command also offers different ways to manage the objects and pools i
     rados get first-object first-object-copy.txt --pool data
     rados stat first-object --pool data
     rados lspools
+
+You can also benchmark the performance of your cluster using *rados bench*.
+Let's first create a separate pool for benchmarking:
+
+    rados mkpool bench 128 1
+
+Test the write performance by writing continuously for 10 seconds:
+
+    rados bench -p bench 10 write --no-cleanup
+
+The command prints out bandwidth, latency and other related information:
+
+    Total writes made:      56
+    Write size:             4194304
+    Bandwidth (MB/sec):     19.575
+    
+    Stddev Bandwidth:       12.1006
+    Max bandwidth (MB/sec): 40
+    Min bandwidth (MB/sec): 0
+    Average Latency:        3.2459
+    Stddev Latency:         1.1006
+    Max latency:            5.04764
+    Min latency:            0.731063
+
+Note the *--no-cleanup* options, which instructs *rados* not to delete the
+data, so that we can use it to test the read performance:
+
+    rados bench -p bench 10 seq
+
+The command prints out a very high throughput rate:
+
+    Bandwidth (MB/sec):    188.755
+
+Why do you think this happens? How can we "fix" this?
+
+**Hint:** run the command below on all nodes and the read benchmark again:
+
+    sudo echo 3 | sudo tee /proc/sys/vm/drop_caches && sudo sync
+
+You can change several parameters for comprehensive tests:
+
+    duration of your benchmark
+    -t: the concurrency of reads/writes (defaults to 16 threads)
+    -b: the size of the object being written (defaults to 4 MB)
+
+Finally, you can remove the benchmarking pool when you are done with testing.
 
 Let's see what happens to the cluster if we take out one of the OSDs:
 

@@ -10,6 +10,8 @@ slides:
 * ceph-4: mds, osd
 * ceph-5: admin
 
+**Note: Throughout this tutorial, you should use the hostnames of YOUR virtual machines.**
+
 First, create a directory on the admin node for maintaining all the
 configuration files and keys that ceph-deploy generates during the
 installation process:
@@ -25,7 +27,7 @@ Note the files created by ceph-deploy in the current directory. You can modify
 the settings in ceph.conf, for example by setting the public network (in our case, private)
 and the default number of replicas in Ceph to 2 instead of 3:
 
-    public network = <private network of VMs>
+    public network = <private network of VMs>          # this is required!
     osd pool default size = 2
 
 Now install ceph on all nodes:
