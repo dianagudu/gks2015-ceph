@@ -37,6 +37,8 @@ ensure scalable and reliable data placement, Ceph uses three concepts:
 ![Data placement overview](ceph-pgs.png)
 [&copy; ceph.com](http://ceph.com/docs/master/rados/operations/placement-groups/)
 
+#### Pools
+
 List all the existing pools in the Ceph cluster:
 
     ceph osd lspools
@@ -66,7 +68,16 @@ Other operations on pools include: getting/setting different attributes (such as
     ceph osd pool set-quota data max_objects 10000
     ceph osd pool mksnap data data-snapshot
 
-Ceph placement groups
+**Note 1:** The number of placement groups in a pool can be increased, but not
+decreased!
+
+**Note 2:** If you increase the number of placement groups *pg_num*, you must
+also increase *pgp_num* to the same number. This is the number of placement
+groups considered for placement by the CRUSH algorithm. Increasing *pg_num*
+will only create new placement groups, but data will only be migrated to the
+new placement groups when *pgp_num* is increased as well.
+
+#### Placement groups
 
     ceph pg stat
     ceph pg <pgid> query
@@ -84,6 +95,8 @@ A PG can be in one of the following states:
 * **incomplete:** the PG has fewer replicas available than the pool's min_size
 * **inconsistent:** a previous scrub or deep-scrub operation detected errors; ceph pg repair required
 * **down:** critical data missing, the PG is unavailable (to recover, either bring the OSD back or declare it lost)
+
+#### Objects
 
 Now let's create an object and save it in the Ceph cluster. Create a text file
 with an editor of your choice and then use *rados put* to add it to a specific
@@ -113,10 +126,12 @@ The *rados* command also offers different ways to manage the objects and pools i
     rados stat first-object --pool data
     rados lspools
 
+### Benchmarking
+
 You can also benchmark the performance of your cluster using *rados bench*.
 Let's first create a separate pool for benchmarking:
 
-    rados mkpool bench 128 1
+    rados mkpool bench 128 0
 
 Test the write performance by writing continuously for 10 seconds:
 
@@ -158,6 +173,8 @@ You can change several parameters for comprehensive tests:
     -b: the size of the object being written (defaults to 4 MB)
 
 Finally, you can remove the benchmarking pool when you are done with testing.
+
+### Fault tolerance
 
 Let's see what happens to the cluster if we take out one of the OSDs:
 

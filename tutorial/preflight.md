@@ -35,6 +35,8 @@ network between the VMs for our Ceph cluster.
         <private ip ceph-4>    ceph-4
         <private ip ceph-5>    ceph-5
 
+**Note: Throughout this tutorial, you should use the hostnames of YOUR virtual machines.**
+
 We will use the gks user to deploy the Ceph cluster, which already has sudo privileges without password required (root is NOT recommended):
 
 * generate ssh keys on admin node

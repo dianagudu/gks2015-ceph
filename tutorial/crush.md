@@ -13,6 +13,8 @@ CRUSH requires a map of the cluster and it uses the hierarchy of devices
 defined there to segregate nodes by their failure domains, such as hosts,
 racks, rooms and data centres.
 
+### CRUSH map
+
 First, let's look at the cluster's default CRUSH map:
 
     ceph osd crush dump
@@ -32,6 +34,8 @@ organised in four sections:
 * **types:** the buckets types used in your CRUSH hierarchy and their assigned weights.
 * **buckets:** a list of all bucket instances and their properties.
 * **rules:** or the manner of selecting buckets.
+
+#### Bucket types
 
 The bucket types facilitate a hierarchy of nodes and leaves: leaf buckets
 represent OSD daemons, while node (non-leaf) buckets represent physical locations in
@@ -54,6 +58,8 @@ host, each host having two OSD daemons.
 ![Example bucket hierarchy](bucket-tree.png)
 [&copy; ceph.com](http://ceph.com/docs/master/rados/operations/crush-map/)
 
+#### Bucket instances
+
 New bucket instances can be declared using the following format:
 
     [bucket-type] [bucket-name] {
@@ -73,6 +79,8 @@ You can add new buckets using the following command:
 Biuckets can also be moved to a new location:
 
     ceph osd crush move ceph-1 rack=rack1
+
+#### CRUSH rules
 
 Rules are defined using the following format:
 
@@ -126,6 +134,8 @@ hierarchy:
      2 0.50000         osd.2        up  1.00000          1.00000
     -5 0.50000     host ceph-4
      3 0.50000         osd.3        up  1.00000          1.00000           
+
+------------------------------------------------------
 
 ### Exercise time
 
@@ -181,4 +191,5 @@ by:
 
     ceph osd reweight-by-utilization [threshold]
 
-[Next: Rados Block Device >>>](rbd.md)
+[Next: Ceph Filesystem >>>](cephfs.md)
+
