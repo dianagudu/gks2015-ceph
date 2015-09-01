@@ -67,9 +67,9 @@ Ceph supports so-called *layering* of snapshots, i.e. copy-on-write clones of a
 block device snapshot. This allows you to clone images (e.g. VM images) quickly
 and easily.
 
-<img src="rbd-clone.jpg" alt="clone" style="height: 250px;"/>
-<img src="rbd-cow.jpg" alt="write" style="height: 250px;"/>
-<img src="rbd-cow-read.jpg" alt="read" style="height: 250px;"/>
+<img src="rbd-clone.jpg" alt="clone" height="250px;"/>
+<img src="rbd-cow.jpg" alt="write" height="250px;"/>
+<img src="rbd-cow-read.jpg" alt="read" height="250px;"/>
 
 [&copy;slideshare.net](http://www.slideshare.net/xen_com_mgr/block-storage-for-vms-with-ceph)
 
