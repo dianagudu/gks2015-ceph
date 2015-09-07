@@ -32,7 +32,7 @@ For installing and running Ceph we will use virtual machines provided by the Gri
 On your personal laptop, you will only need:
 
 * an ssh client to connect to the VMs - if you're using
-Linux or Mac, this is already installed; on Winows, I would recommend
+Linux or Mac, this is already installed; on Windows, I would recommend
 [PuTTY](http://www.putty.org/).
 * a web browser to access the course material on
   [github](https://github.com/dianagudu/gks2015-ceph).
