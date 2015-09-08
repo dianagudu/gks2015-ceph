@@ -49,6 +49,6 @@ Linux or Mac, this is already installed; on Windows, I would recommend
 * [CRUSH](tutorial/crush.md)
 * [CephFS](tutorial/cephfs.md)
 * [RBD](tutorial/rbd.md)
-* Advanced topics: [erasure coding](tutorial/erasure.md)
+* [Erasure coding](tutorial/erasure.md)
 * [Troubleshooting](tutorial/troubleshooting.md)
 

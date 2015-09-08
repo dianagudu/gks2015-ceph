@@ -14,13 +14,50 @@
 \title{ceph workshop}
 \subtitle{GridKA School 2015}
 \date{\today}
-\author{Diana Gudu}
+\author{Diana Gudu\\
+        Uros Stevanovic}
 \institute[KIT]{Karlsruhe Institute of Technology}
 
 \begin{document}
 
 \maketitle
 
+\section{introduction round}
+\begin{frame}
+    \frametitle{diana gudu}
+    \begin{itemize}
+        \item PhD researcher in Computer Science @KIT (SCC)
+            \begin{itemize}
+                \item distributed multi-agent framework for trading cloud 
+                    resources
+            \end{itemize}
+        \item working in HBP @SCC on cloud storage
+        \item MSc in Computational Science and Engineering @TU Munich
+        \item BSc in Computer Science @Polytechnic University of Bucharest
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{uros stevanovic}
+    \begin{itemize}
+        \item working in AARC project @KIT (SCC)
+        \item PhD @KIT (IPE): 2010-2015
+            \begin{itemize}
+            \item building a custom smart camera framework
+            \item using FPGAs
+            \item implementing image processing algorithms
+            \end{itemize}
+        \item studied Electrical Engineering @University of Belgrade
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{you}
+    \centering Your turn!
+\end{frame}
+
+
+\section{evolution of storage}
 \begin{frame}[fragile]
   \frametitle{evolution of storage}
     \begin{center}
@@ -39,9 +76,6 @@
 
 \begin{frame}[fragile]
   \frametitle{future of storage}
-    % \begin{itemize}
-    %     \item
-    % \end{itemize}
     \begin{columns}
         \column{.5\textwidth}
         \input{storage-appliance.tikz}
@@ -61,7 +95,7 @@
                 \item open-source
                 \item community focused
                 \item software-defined
-                \item scale-out hardware
+                \item scale-out hardware, no SPF
                 \item self-managing
                 \item failure is normal
                 \end{itemize}
@@ -268,11 +302,12 @@
     \frametitle{overview}
     \begin{itemize}
         \item Deploy a Ceph cluster
-        \item Simple operations with the storage cluster
-        \item CRUSH
-        \item RBD
-        \item CephFS
-        \item Advanced topics: erasure coding, cache tiering
+        \item Basic operations with the storage cluster
+        \item Data placement: CRUSH
+        \item Ceph Filesystem
+        \item Block storage: RBD
+        \item Advanced topics: erasure coding
+        \item Troubleshooting challenge
     \end{itemize}
 \end{frame}
 

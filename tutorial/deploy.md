@@ -60,17 +60,19 @@ Check the status of the monitors with:
 
     ceph mon stat
 
-Next, we will deploy the 4 OSDs. We will use an entire disk (/dev/vdb), that
-will be partitioned by ceph-deploy into 2 partitions: journal and data.
+Next, we will deploy the 4 OSDs. We will use the */dev/vdb* disk on each VM,
+which is mounted on */mnt*.
 
-    ceph-deploy osd prepare ceph-1:/dev/vdb ceph-2:/dev/vdb ceph-3:/dev/vdb ceph-4:/dev/vdb
+    ceph-deploy osd prepare ceph-1:/mnt ceph-2:/mnt ceph-3:/mnt ceph-4:/mnt
 
-However, Ceph supports any location in the filesystem as location for journal
+It is also possible to pass the disk itself as a location for OSDs. Make sure
+that the disk is not mounted. Ceph will partition it into 2 partitions: journal and data.
+Generally, Ceph supports any location in the filesystem as location for journal
 and data.
 
 To activate the OSDs, execute:
 
-    ceph-deploy osd activate ceph-1:/dev/vdb ceph-2:/dev/vdb ceph-3:/dev/vdb ceph-4:/dev/vdb
+    ceph-deploy osd activate ceph-1:/mnt ceph-2:/mnt ceph-3:/mnt ceph-4:/mnt
 
 Check the status of the Ceph cluster with:
 

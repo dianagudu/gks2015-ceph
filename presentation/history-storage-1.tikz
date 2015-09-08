@@ -47,7 +47,7 @@
     ]
 \small
 
-    \only<1-4>{
+    \only<1,3-5>{
     \ragent[cl1,(0,5)]{\tiny Human};
     \entity[pc1,(0,2)] {\tiny Computer};
     \aboxr[10,20,1.2,d1,(0,0)]{\tiny Disk};
@@ -55,7 +55,14 @@
     \isaedge[pc1,d1,,];
     }
 
-    \only<2-4>{
+    \only<2>{
+        \node[align=left] (img) at (-1,-2) {
+        \includegraphics[width=.8\textwidth]{du-50-fold-growth-lg.jpg}\\
+        \href{http://www.trumpiot.co/2014/06/21/executive-summary-a-universe-of-opportunities-and-challenges-the-digital-universe-in-2020-big-data-bigger-digital-shadows-and-biggest-growth-in-the-far-east-idc/}{\copyright trumpiot.co}
+        };
+    }
+
+    \only<3-5>{
     \aboxr[10,20,1.2,d2,(1,0)]{\tiny Disk};
     \aboxr[10,20,1.2,d3,(2,0)]{\tiny Disk};
     \aboxr[10,20,1.2,d4,(-1,0)]{\tiny Disk};
@@ -70,7 +77,7 @@
     \isaedge[cl3,pc1,,];
     }
     
-    \only<3-4>{
+    \only<4-5>{
     \ragent[cl4,(2,4)]{\tiny Human};
     \ragent[cl5,(-2,4)]{\tiny Human};
     \ragent[cl6,(3,4)]{\tiny Human};
@@ -95,17 +102,17 @@
     \isaedge[cl14,pc1,,];
     }
 
-    \only<4>{
+    \only<5>{
     \tboxr[25,60,center,pc1,(0,2)]{\tiny Big Expensive Computer};
     }
 
-    \only<5->{
+    \only<6->{
     \ragent[cl1,(0.1,3)]{\tiny Human};
     \ragent[cl2,(1.1,3)]{\tiny Human};
     \ragent[cl3,(-1.1,3)]{\tiny Human};
     }
 
-    \only<5>{
+    \only<6>{
     \entity[pc1,(0,0.6)] {\tiny Computer};
     \entity[pc2,(1,0.6)] {\tiny Computer};
     \entity[pc3,(2,0.6)] {\tiny Computer};
@@ -137,7 +144,7 @@
     \isaedge[cl3, pt8,,];
     }
 
-    \only<6>{
+    \only<7>{
     \tboxr[40,150,north,stapp,(0,0.5)]{\tiny Storage appliance};
 
     \entity[pc1,(0,0.6)] {\tiny Computer};
